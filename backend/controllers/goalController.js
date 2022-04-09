@@ -1,9 +1,13 @@
+// added express-async-handler pkg //
+
+const asyncHandler = require("express-async-handler");
+
 // @desc Get Goals
 // @route GET /api/goals
 // @access Private - post authentication
-const getGoals = async (req, res) => {
+const getGoals = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Get goals!" });
-};
+});
 
 // @desc Set Goal
 // @route POST /api/goals
@@ -11,27 +15,27 @@ const getGoals = async (req, res) => {
 
 // mongoose operates with a promise therefore async/await
 
-const setGoal = async (req, res) => {
+const setGoal = asyncHandler(async (req, res) => {
   if (!req.body.text) {
     res.status(400);
     throw new Error(" Please add a text field!");
   }
   res.status(200).json({ message: "Create goals!" });
-};
+});
 
 // @desc Update Goal
 // @route PUT /api/goals/:id
 // @access Private - post authentication
-const updateGoal = async (req, res) => {
+const updateGoal = asyncHandler(async (req, res) => {
   res.status(200).json({ message: `Update goal ${req.params.id}` });
-};
+});
 
 // @desc Delete Goal
 // @route DELETE /api/goals/:id
 // @access Private - post authentication
-const deleteGoal = async (req, res) => {
+const deleteGoal = asyncHandler(async (req, res) => {
   res.status(200).json({ message: `This deletes ${req.params.id}` });
-};
+});
 
 module.exports = {
   getGoals,
