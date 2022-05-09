@@ -11,7 +11,16 @@ function Register() {
 
   const { name, email, password, password2 } = formData;
 
-  const onChange = () => {};
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -23,7 +32,7 @@ function Register() {
       </section>
 
       <section>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <input
               className="form-control"
@@ -67,6 +76,11 @@ function Register() {
               placeholder="Confirm password"
               onChange={onChange}
             />
+          </div>
+          <div className="form-group">
+            <button type="submit" className="btn btn-block">
+              Submit
+            </button>
           </div>
         </form>
       </section>
